@@ -10,10 +10,10 @@ public class VuforiaController : FrameworkController
         arCamera.GetComponent<VuforiaBehaviour>().enabled = true;
         VuforiaRuntime.Instance.InitVuforia();
     }
-
-    public override void InteractionsApproved(Interaction[] interaction)
+    
+    public override void MarkerIsDetected_AugmentResource(string[] event_inputs, string[] action_inputs)
     {
-        Debug.Log("> INTERACTIONS APPROVED > " + interaction.Length);
+        throw new System.NotImplementedException();
     }
 
     public override void InteractionsRejected()
@@ -21,8 +21,18 @@ public class VuforiaController : FrameworkController
         Debug.Log("> INTERACTIONS REJECTED > ");
     }
 
-    public override void ResourceCreated(Resource resource)
+    public override void AddPredefinedFiducialMarkerResource(Resource resource)
     {
-        Debug.Log("> RESOURCE CREATED > " + resource.id);
+        Debug.Log("> NOT SUPPORTED");
+    }
+
+    public override void AddPredefinedNaturalMarkerResource(Resource resource)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void AddPolyResource(Resource resource)
+    {
+        throw new System.NotImplementedException();
     }
 }
