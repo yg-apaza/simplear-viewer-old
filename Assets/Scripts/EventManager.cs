@@ -63,7 +63,6 @@ public class EventManager
             case EditorEvent.RESOURCE_CREATED:
                 EditorEvent.ResourceCreated resourceCreated = new EditorEvent.ResourceCreated("", new Resource("", "", "", ""));
                 JsonUtility.FromJsonOverwrite(jsonData, resourceCreated);
-                //Debug.Log(">>>>> NO EN EL MAIN THREAD" + resourceCreated.resource.id);
                 UnityThread.ExecuteInUpdate(() =>
                 {
                     if (resourceCreatedSubscribers != null)

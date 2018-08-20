@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -16,12 +16,12 @@ MonoBehaviour:
     ufoLicenseKey: QVZ1ZFVXdi8vLy8vQUFBQUtHMUljam8rTlV2aWpGV292UjhxeENCNTk5dTVxWWlBTFZCVzJXb0ZIOFJLZ3Q0RkxDK2tXQkZGYVcvei9PV2NuUGV2S0pQaUtZdGZORFdPRTdleVNpMDJ3VzE2OXpHYnFGQnJSaGYxQWFJL21CS09ISXR0a1Q1UFowbW9tTGNYVXVjNFNMRk5kV3VzSUN0RVUyaEdKaEZPc2NyWU1OdW4rMHIvQXVUZUEvUUQ1RnZQRkJKNzZraVM1cVRUY1hSLzQ0ZytRMEI4OWc3NTNWRzNFNDdJTzA3YVZNOXhmSFRJSCthRlZUUk4rTXRQd2ZPYlNnVzRoVW80R2kvYmxQZWg2dHdFQURDRmVteXRPSjkxSlJHdHdjdlhNbEVEUzlHdDBUNDZSYWtkdWxnZ1YydlFvaHFLOFhuQjh4ZHI3Nkh3Z0dXbTFyZUFBVm1wZWVVS1RQOVZ2UDdSYVJvaE9rb1NnSGZWS0UxelpLc0U=
     delayedInitialization: 1
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
+    maxSimultaneousImageTargets: 5
     maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
-    version: 7.2.24
+    version: 7.2.23
   digitalEyewear:
     cameraOffset: 0.06
     distortionRenderingLayer: 31

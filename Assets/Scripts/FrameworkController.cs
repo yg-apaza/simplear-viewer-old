@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public abstract class FrameworkController : MonoBehaviour {
-    
+public abstract class FrameworkController : MonoBehaviour
+{
+    protected Dictionary<string, GameObject> gameObjectresources = new Dictionary<string, GameObject>();
+    protected Dictionary<string, Resource> resources = new Dictionary<string, Resource>();
+
     void OnEnable()
     {
         EventManager.interactionsApprovedSubscribers += InteractionsApproved;
@@ -9,17 +13,26 @@ public abstract class FrameworkController : MonoBehaviour {
         EventManager.resourceCreatedSubscribers += ResourceCreated;
     }
 
-    void Start () {
+    void Start ()
+    {
         Setup();
-        // TODO: Wait Framework setup to send FRAMEWORK_READY event
+    }
+
+    /**
+     * Every class which implements this should call this method when the
+     * framework is ready
+     **/
+    public void SendReadyMessage()
+    {
         Controller.eventManager.Send(new ViewerEvent.FrameworkReady(ViewerEvent.FRAMEWORK_READY));
     }
 
-    public abstract void Setup();
+    public abstract void Setup();    
     
 	public void InteractionsApproved(Interaction[] interactions)
     {
-        foreach(Interaction i in interactions)
+        RestoreResources();
+        foreach (Interaction i in interactions)
         {
             switch (i._event)
             {
@@ -32,6 +45,18 @@ public abstract class FrameworkController : MonoBehaviour {
                     }
                     break;
             }
+        }
+    }
+
+    /**
+     * Restore method can be overrided or edited. It should restore to the
+     * initial state of resources, this is without connections or interactions added
+     **/
+    public void RestoreResources()
+    {
+        foreach (KeyValuePair<string, GameObject> resource in gameObjectresources)
+        {
+            resource.Value.transform.parent = null;
         }
     }
 
@@ -60,7 +85,14 @@ public abstract class FrameworkController : MonoBehaviour {
 
     public abstract void AddPredefinedNaturalMarkerResource(Resource resource);
 
-    public abstract void AddPolyResource(Resource resource);
+    public void AddPolyResource(Resource resource)
+    {
+        PolyUtil.GetPolyResult(resource.content, (polyResult) =>
+        {
+            resources.Add(resource.id, resource);
+            gameObjectresources.Add(resource.id, polyResult);
+        });
+    }
 
     void OnDisable()
     {

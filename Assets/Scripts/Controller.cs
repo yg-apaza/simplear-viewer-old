@@ -41,15 +41,16 @@ public class Controller : MonoBehaviour {
 
     void OnDisable()
     {
-        //eventManager.Stop();
-        // TODO: Stop Socket before closing the application
+        // TODO: Stop Socket ONLY before closing the application
+        eventManager.Stop();
         EventManager.projectOpenedSubscribers -= GotoFrameworkScene;
         EventManager.projectClosedSubscribers -= GotoMainScene;
     }
 
     public void GotoFrameworkScene(string framework)
     {
-        switch(framework)
+        // TODO: Use static strings or enums
+        switch (framework)
         {
             case "artoolkit":
                 break;

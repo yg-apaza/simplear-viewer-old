@@ -40,7 +40,7 @@ public class SocketManager : EventManager {
         try
         {
             listener.Connect(localEndPoint);
-            Debug.Log("> SOCKET CONNECTED");
+            Debug.Log("<color=green>SOCKET CONNECTED</color>");
             Send(new ViewerEvent.ViewerReady(ViewerEvent.VIEWER_READY));
             keepReading = true;
 
@@ -50,7 +50,7 @@ public class SocketManager : EventManager {
                 if (bytesRec <= 0)
                 {
                     keepReading = false;
-                    Debug.Log(">>>>>>>>>>>>> CERRADO INEXPLICABLE");
+                    Debug.Log("<color=yellow>SOCKET DISCONECTED</color>");
                     Stop();
                     break;
                 }
@@ -121,7 +121,7 @@ public class SocketManager : EventManager {
             keepReading = false;
             listener.Shutdown(SocketShutdown.Both);
             listener.Close();
-            Debug.Log("> SOCKET DISCONNECTED");
+            Debug.Log("<color=yellow>SOCKET DISCONNECTED</color>");
         }
         catch (Exception e)
         {
